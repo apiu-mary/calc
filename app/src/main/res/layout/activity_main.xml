@@ -14,24 +14,6 @@
         app:layout_constraintGuide_begin="548dp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilSecondNumber"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilFirstNumber">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSecondNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="SecondNumber" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilFirstNumber"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
@@ -50,66 +32,73 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnadd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:text="add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilSecondNumber" />
+        android:id="@+id/btnmultiply"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:text="multiply"
+        app:layout_constraintEnd_toStartOf="@+id/btnadd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnsubtract"
+        app:layout_constraintTop_toTopOf="@+id/btnsubtract" />
 
     <Button
-        android:id="@+id/btnsubtract"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
-        android:text="Subtract"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.37"
-        app:layout_constraintStart_toEndOf="@+id/btnadd"
-        app:layout_constraintTop_toBottomOf="@+id/tilSecondNumber" />
+        android:id="@+id/btnadd"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:text="add"
+        app:layout_constraintEnd_toStartOf="@+id/btnmodulus"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnmultiply"
+        app:layout_constraintTop_toTopOf="@+id/btnmultiply" />
 
     <Button
         android:id="@+id/btnmodulus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
         android:text="modulus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnadd" />
-
-    <Button
-        android:id="@+id/btnmultiply"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:text="multiply"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnmodulus"
-        app:layout_constraintTop_toBottomOf="@+id/btnsubtract" />
+        app:layout_constraintEnd_toStartOf="@+id/btnresult"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnadd"
+        app:layout_constraintTop_toTopOf="@+id/btnadd" />
 
     <Button
         android:id="@+id/btnresult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
         android:text="result"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnmodulus"
+        app:layout_constraintTop_toTopOf="@+id/btnmodulus" />
+
+    <Button
+        android:id="@+id/btnsubtract"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="69dp"
+        android:text="Subtract"
+        app:layout_constraintEnd_toStartOf="@+id/btnmultiply"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnmodulus" />
+        app:layout_constraintTop_toTopOf="@+id/tilSecondNumber" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSecondNumber"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tilFirstNumber">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSecondNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="etSecondNumber" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

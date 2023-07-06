@@ -3,73 +3,64 @@ package com.example.calcapp2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
+import com.example.calcapp2.databinding.ActivityMainBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
+
+
 class MainActivity : AppCompatActivity() {
-    lateinit var tilFirstNumber: TextInputLayout
-    lateinit var tilSecondNumber: TextInputLayout
-    lateinit var etFirstNumber: TextInputEditText
-    lateinit var etSecondNumber: TextInputEditText
-    lateinit var btnresult: Button
-    lateinit var btnmultiply: Button
-    lateinit var btnmodulus: Button
-    lateinit var btnsubtract: Button
-    lateinit var btnadd: Button
+    lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        validateresults()
-
-//        btnresult.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
-
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
 
 
-    fun castViews(){
-        tilFirstNumber=findViewById(R.id.tilFirstNumber)
-        tilSecondNumber=findViewById(R.id.tilSecondNumber)
-        etFirstNumber=findViewById(R.id.etFirstNumber)
-        etSecondNumber=findViewById(R.id.tilSecondNumber)
-        btnresult=findViewById(R.id.btnresult)
-        btnmultiply=findViewById(R.id.btnmodulus)
-        btnsubtract=findViewById(R.id.btnmodulus)
-        btnadd=findViewById(R.id.btnadd)
-        btnmodulus=findViewById(R.id.btnmodulus)
 
 
+
+        binding.btnmodulus.setOnClickListener { calculations('%') }
+        binding.btnsubtract.setOnClickListener { calculations('-') }
+        binding.btnadd.setOnClickListener { calculations('+') }
+        binding.btnmodulus.setOnClickListener { calculations('*') }
     }
-    fun validateresults() {
-        castViews()
-        btnadd!!.setOnClickListener {
-            val result = etFirstNumber.text.toString().toDouble()!! + etSecondNumber.text.toString()
-                .toDouble()!!
-            btnresult.text = result.toString()
+
+    fun calculations(operator: Char) {
+        binding.tilFirstNumber.error = null
+        binding.tilSecondNumber.error = null
+        val num1 = binding.etFirstNumber.text.toString()
+        val num2 = binding.etSecondNumber.text.toString()
+        var error = false
+        if (num1.isBlank()) {
+            binding.tilFirstNumber.error = "Num 1 is required"
+            error = true
         }
-
-        btnmodulus!!.setOnClickListener {
-            val result = etFirstNumber.text.toString().toDouble()!! % etSecondNumber.text.toString()
-                .toDouble()!!
-            btnresult.text.toString()
+        if (num2.isBlank()) {
+            binding.tilSecondNumber.error = "Num 2 is required"
+            error = true
         }
-        btnsubtract!!.setOnClickListener {
-            val result = etFirstNumber.text.toString().toDouble()!!-etSecondNumber.text.toString().toDouble()!!
+        if (!error) {
+            val firstNum = num1.toDouble()
+            val secondNum = num2.toDouble()
+            val result = when (operator) {
+                '+' -> firstNum + secondNum
+                '-' -> firstNum - secondNum
+                '*' -> firstNum * secondNum
+                '%' -> firstNum % secondNum
+                else -> throw IllegalArgumentException("Invalid operator:$operator")
+
+
+            }
+            binding.btnresult.text = result.toString()
         }
-        btnmultiply!!.setOnClickListener {
-            val result = etFirstNumber.text.toString().toDouble()!! * etSecondNumber.text.toString()
-                .toDouble()!!
+    }
+}
 
-
-//
-
-        }
-
-
-    }}
